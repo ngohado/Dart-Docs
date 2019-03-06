@@ -164,3 +164,146 @@ Trong Dart, để so sánh 2 giá trị của 2 String, ta dùng toán tử `==`
   String s8 = "The quick brown " + "fox jumps over the lazy dog";
   print(s7 == s8); // true
 ```
+
+Ngoài ra, để tạo một string gồm nhiều dòng, ta có thể sử dụng 3 dấu nháy:
+
+```
+    var s = '''The first line
+  	     The second line
+         The third line
+    ''';
+```
+
+Ta có thể tạo một raw string trong Dart (các string thuần là ký tự, không treat ký tự nào là đặc biệt cả) bằng cách thêm ký tự `r` vào trước string đó:
+
+```
+    var rawString = r"this is new line character: \n";
+    print(rawString);
+```
+
+Cuối cùng, khi khai báo một const string và muốn chèn các giá trị của biểu thức vào string đó, ta cần chắc chắn rằng các biểu thức đó là các compile-time constant.
+
+```
+    // These work in a const string.
+    const aConstNum = 0;
+    const aConstBool = true;
+    const aConstString = 'a constant string';
+
+    // These do NOT work in a const string.
+    var aNum = 0;
+    var aBool = true;
+    var aString = 'a string';
+    const aConstList = [1, 2, 3];
+
+    const validConstString = '$aConstNum $aConstBool $aConstString'; // ok
+    const invalidConstString = '$aNum $aBool $aString $aConstList'; // compile-time error
+```
+
+#### Boolean
+
+Để thể hiện một giá trị true/false trong Dart, ta sử dụng kiểu dữ liệu `bool`. Chỉ có 2 object có kiểu dữ liệu `bool` trong Dart là `true`, `false` và cả 2 đều là compile-time constant.
+
+```
+    var aTrueValue = true;
+    var aFalseValue = false;
+```
+
+#### List
+
+Đối với các ngôn ngữ khác, kiểu dữ liệu dạng collection phổ biến nhất là array - một tập hợp các phần tử có cùng kiểu dữ liệu. Tuy nhiên, trong Dart, ta có một khái niệm tương đương: `List`.
+
+```
+    var list = [1, 2, 3];
+    list.add(4); // ok
+    list.add(5.0); // compile-time error
+
+    var list1 = List();
+```
+
+Trong trường hợp phía trên, Dart tự suy ra kiểu của biến list là `List<int>`. Nếu bạn add một phần tử không phải kiểu int vào list, sẽ có compile-time error xảy ra.
+
+Chỉ số của list bắt đầu từ 0. Bạn có thể lấy ra số phần tử của list như sau:
+
+```
+    var list = [1, 2, 3];
+    var length = list.length;
+    print(length); // 3
+```
+
+Để tạo một biến compile-time constant kiểu `List` (không thể thay đổi giá trị của biến đó), ta khai báo như sau:
+
+```
+    var constantList = const [1, 2, 3];
+    constantList[1] = 1; // run-time error
+```
+
+#### Set
+
+Trong Dart, `Set` là một kiểu dữ liệu dùng để lưu trữ một tập hợp các phần tử, tuy nhiên khác với `List`, các phần tử trong `Set` không giữ đúng thứ tự như khi được add vào. Cùng với đó, mỗi phần tử trong `Set` là duy nhất.
+
+```
+    var set = {"columbia", "challenger", "atlantis", "discovery", "endeavour"};
+    set.add("endeavour");
+    print(set.length); // 5
+```
+
+Trong trường hợp trên, Dart tự suy ra kiểu của set là String. Nếu muốn chỉ rõ kiểu của set hoặc khai báo một set rỗng, ta làm như sau:
+
+```
+    var planets = <String> {"mecury", "venus"};
+    var zoodiac  = <String> {};
+```
+
+Lưu ý, cần phải chỉ rõ kiểu của set khi khai báo một set rỗng, nếu không Dart sẽ hiểu là đang khai báo một map.
+
+```
+    var emptySet = <int>{};
+    var emptyMap = {}; // Map<dynamic, dynamic>
+```
+
+Để tạo một compile-time constant, ta làm như sau:
+
+```
+    var constantSet = const {"a", "b"};
+    constantSet.add("c"); /run-time error
+```
+
+#### Map
+
+`Map` là kiểu dữ liệu dùng để lưu trữ các phần tử dưới dạng key-value. Cả key và value đều có thể thuộc bất kỳ dạng dữ liệu nào. Mỗi key chỉ xuất hiện một lần trong map. Tuy nhiên, value có thể xuất hiện nhiều lần.
+
+```
+    var national = {
+    	//key      		//value
+    	"Viet Nam" 	    : "Ha Noi",
+    	"France" 		: "Paris",
+    	"Italy"			: "Rome"
+    };
+
+    var map = Map();
+    map["first"] = 1;
+    map["second"] = 2;
+    map["third"] = 3;
+```
+
+Thêm và lấy giá trị từ map:
+
+```
+    var map = <int, String>{};
+    map[1] = "a";
+    map[2] = "b";
+    print(map[1] == "a");
+    print(map[3] == null);
+```
+
+Cuối cùng, để khai báo một compile-time constant, ta thêm `const` lên trước phần giá trị của biến:
+
+```
+    final constantMap = const {
+      2: 'helium',
+      10: 'neon',
+      18: 'argon',
+    };
+```
+
+#### Runes
