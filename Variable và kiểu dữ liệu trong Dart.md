@@ -89,4 +89,43 @@ Kiểu số trong Dart có thể thuộc 2 kiểu dữ liệu con:
 *int*
 Kiểu dữ liệu số nguyên với độ rộng tối đa là 64 bit và tùy thuộc vào platform. Với máy ảo Dart (Dart VM), giá trị của kiểu `int` có thể nằm trong khoảng -2^63 đến 2^63 - 1.
 
+```
+var x = 1;
+var hex = 0xDEADBEEF;
+```
+
 *double*
+Kiểu dữ liệu số thực với độ dài 64 bit, tuân theo tiêu chuẩn IEEE 754.
+
+```
+var y = 1.1;
+var exponents = 1.42e5;
+```
+
+Cả `int` và `double` đều là lớp con của `num`. Kiểu số trong Dart support các toán tử cơ bản: +, -, \*, / cùng với một số function như `abs()`, `ceil()`, `floor()`... Các toán tử thao tác với bit (>>, <<...) chỉ được định nghĩa với kiểu `int`. Ngoài ra, bạn có thể tìm thêm các toán tử đối với kiểu `num` trong thư viện [dart:math](https://api.dartlang.org/stable/2.2.0/dart-math/dart-math-library.html).
+
+```
+assert((3 << 1) == 6); // 0011 << 1 == 0110
+assert((3 >> 1) == 1); // 0011 >> 1 == 0001
+assert((3 | 4) == 7); // 0011 | 0100 == 0111
+```
+
+Ta có thể convert từ kiểu số sang string hoặc ngược lại như sau:
+
+```
+//string to int
+var a = int.parse("1");
+print(a == 1); // true
+
+//int to string
+var b = 2.toString();
+print(b == "2"); // true
+
+//string to double
+var c = double.parse("3");
+print(c == 3); // true
+
+//double to string
+var d = 4.toString();
+print(d == "4"); // true
+```
