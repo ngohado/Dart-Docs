@@ -67,7 +67,7 @@ Một cách để khai báo biến mà không cần xác định rõ kiểu củ
 
 * Mọi thứ mà bạn có thể gán cho một biến đều là *object* và mỗi *object* là một thể hiện của một *class*. Một số, một function, hay [null]() đều là một *object*. Tất cả các *object* đều kế thừa từ class [Object]().
 
-* Dart là một ngôn ngữ todo, tuy nhiên kiểu dữ liệu khi khai báo có thể có hoặc không vì Dart có thể tự suy ra kiểu của biến dựa vào giá trị của biến đó. Ví dụ: trong đoạn code phía trên, biến *number* có thể được suy ra là kiểu dữ liệu [int](). Khi bạn cố ý không muốn xác định kiểu dữ liệu của một biến là gì, hãy sử dụng một kiểu dữ liệu đặc biết là [dynamic]().
+* Dart là một ngôn ngữ strongly-typed, tuy nhiên kiểu dữ liệu khi khai báo có thể có hoặc không vì Dart có thể tự suy ra kiểu của biến dựa vào giá trị của biến đó. Ví dụ: trong đoạn code phía trên, biến *number* có thể được suy ra là kiểu dữ liệu [int](). Khi bạn cố ý không muốn xác định kiểu dữ liệu của một biến là gì, hãy sử dụng một kiểu dữ liệu đặc biết là [dynamic]().
 
 * Dart có support [Generic]. Ví dụ: `List<int>` (một list gồm các giá trị kiểu int) hoặc `List<dynamic>` (một list gồm bất kỳ một kiểu giá trị nào)
 
@@ -75,7 +75,7 @@ Một cách để khai báo biến mà không cần xác định rõ kiểu củ
 
 * Tương tự như ý trên, Dart support *top-level variables* cũng như các biến được khai báo bên trong một class: *instance variables* hoặc *static variables*. *Instance variables* còn được gọi với tên khác như *field* hoặc *property*.
 
-* Không giống như Java, Dart không có các *visibility modifier* như `public`, `protected`, `private` hay `default`. Thay vào đó, Dart phân biệt một biến là local dựa vào quy tắc đặt tên: tên biến bắt đầu bằng ký tự gạch dưới `_` thì todo
+* Không giống như Java, Dart không có các *visibility modifier* như `public`, `protected`, `private` hay `default`. Thay vào đó, Dart phân biệt một biến là local dựa vào quy tắc đặt tên: tên biến bắt đầu bằng ký tự gạch dưới `_` thì được coi là private đối với library chứa nó (Mỗi file trong Dart được coi là một library)
 
 * Tên biến có thể bắt đầu bằng ký tự gạch dưới `_` và theo sau bởi các chữ hoặc số
 
