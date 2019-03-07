@@ -307,3 +307,22 @@ Cuối cùng, để khai báo một compile-time constant, ta thêm `const` lên
 ```
 
 #### Runes
+
+Unicode là một bảng mã mà ở đó, mỗi ký tự (chữ, số hoặc biểu tượng của tất cả các hệ thống chữ viết trên thế giới) được biểu diễn bằng một số duy nhất (số duy nhất này được gọi là một điểm mã - code point). Cách để biểu diễn một code point trong Unicode là `\uXXXX` hoặc `U+XXXX` với *\u* hoặc *U+* tượng trưng cho Unicode còn XXXX là 4 ký tự hex có tổng là 16 bit. VD: `U+0041` là số hex 0041 (tương đương với giá trị 65 trong hệ nhị phân) và nó biểu diễn ký tự *A* trong chuẩn Unicode. Đây là String trong Dart - hỗ trợ UTF-16.
+
+Bởi vậy, để xác định nhiều hơn 4 ký tự hex, Dart hỗ trợ UTF-32 bằng việc cung cấp kiểu dữ liệu `Runes`. Ta sử dụng kiểu `Runes` như sau bằng cách sử dụng thêm một dấu ngoặc nhọn:
+
+```
+  var clapping = '\u{1f44f}';
+  print(clapping);
+  print(clapping.codeUnits);
+  print(clapping.runes.toList());
+
+  Runes input = new Runes(
+      '\u2665  \u{1f605}  \u{1f60e}  \u{1f47b}  \u{1f596}  \u{1f44d}');
+  print(new String.fromCharCodes(input));
+```
+
+#### Symbols
+
+Xem thêm [tại đây](https://www.dartlang.org/guides/language/language-tour#symbols).
